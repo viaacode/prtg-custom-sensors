@@ -21,7 +21,7 @@ def report_and_exit(message,channels):
     channels.reverse()
     for ch in channels:
         result.add_channel(channel_name=ch['name'], unit='ms',
-                value=ch['value'], is_float=False, is_limit_mode=True,
+                value=ch.get('value',0), is_float=False, is_limit_mode=True,
                 limit_min_error=1, limit_max_error=5000,
                 limit_min_warning=0, limit_max_warning=3000,
                 limit_error_msg=ch.get('error', 'Timeout'))
@@ -32,7 +32,7 @@ def report_and_exit(message,channels):
 if __name__ == "__main__":
     # interpret first command line parameter as json object
     data = json.loads(sys.argv[1])
-    login, logout = data['params'].split(',')
+    login, logout = data['params'].replace('\\','').split(',')
     timer = Timer()
     channels = []
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         if is_SAMLRequest(r)), None))
     if not saml_redirect:
         message = 'Not redirected to idp'
-        channels.append({ 'name': step, 'value': 0,
+        channels.append({ 'name': step,
             'error': '{}: {}'.format(r_app.url, r_app.status_code)
             })
         report_and_exit(message,channels)
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     message = 'idp: {}'.format(urlparse(saml_redirect.url).netloc)
     loginform = HTMLForm(r_app,'loginform')
     if loginform.form is None:
-        channels.append({'name': step, 'value': 0,
+        channels.append({'name': step,
             'error': 'loginform not found in idp response' })
         report_and_exit(message,channels)
     channels.append({'name': step, 'value': timer.get_elapsed()})
@@ -66,9 +66,7 @@ if __name__ == "__main__":
     # 'SimpleSAMLAuthToken'
     auth_token = r_login.cookies.get('SimpleSAMLAuthToken', None)
     if not auth_token:
-        channels.append({'name': step, 'value': 0,
-            'error': 'IDP Login failed, check credentieals'
-            })
+        channels.append({'name': step, 'error': 'IDP Login failed' })
         report_and_exit(message,channels)
     channels.append({'name':step, 'value': timer.get_elapsed()})
     saml_form = HTMLForm(r_login)
@@ -81,9 +79,7 @@ if __name__ == "__main__":
     redirected = (next(( r for r in r_app.history
         if urlparse(r.headers['location']).netloc == data['host']), None))
     if not redirected:
-        channels.append({'name': step, 'value': 0,
-            'error': 'IDP does not redirect to application'
-            })
+        channels.append({'name': step, 'error': 'IDP does not redirect back' })
         report_and_exit(message,channels)
     channels.append({'name': step, 'value': timer.get_elapsed()})
 
@@ -92,9 +88,7 @@ if __name__ == "__main__":
             cookies=saml_form.cookiejar)
     saml_redirect = (next(( r for r in r_logout.history if is_SAMLRequest(r)), None))
     if saml_redirect == None:
-        channels.append({'name': step, 'value': 0,
-            'error': 'Application does not send logout request to IDP'
-            })
+        channels.append({'name': step, 'error': 'SP does not redirect to IDP on logout' })
         report_and_exit(message,channels)
     channels.append({'name': step, 'value': timer.get_elapsed()})
 
@@ -104,9 +98,7 @@ if __name__ == "__main__":
     r_app = saml_logout_form.submit()
     response_errors = (next(( r for r in r_app.history + [r_app] if not r), None))
     if response_errors != None:
-        channels.append({'name': step, 'value': 0,
-            'error': 'Final application logout fails'
-            })
+        channels.append({'name': step, 'error': 'Final SP logout fails' })
         report_and_exit(message,channels)
     channels.append({'name': step, 'value': timer.get_elapsed()})
     report_and_exit(message,channels)

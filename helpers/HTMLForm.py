@@ -56,7 +56,7 @@ class HTMLForm(object):
     # the base url of the document, without parameters or query
     def get_base_url(self):
         c = urlparse(self.response.url)
-        return '{}://{}/{}'.format(c.scheme,c.netloc,c.path)
+        return '{}://{}{}'.format(c.scheme,c.netloc,c.path)
 
     # Resolve the form action url, which can be relative or absolute
     def get_action_url(self):
