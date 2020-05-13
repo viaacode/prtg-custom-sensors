@@ -6,7 +6,7 @@ from helpers.timer import Timer
 import sys
 import json
 # get CustomSensorResult from paepy package
-from paepy.ChannelDefinition import CustomSensorResult
+from prtg.sensor.result import CustomSensorResult
 
 def is_SAMLRequest(response):
     args = urlparse(response.url).query
@@ -20,19 +20,20 @@ def report_and_exit(message,channels):
     # limit_min_error = 1 will trigger the error state for the channel in PRTG.
     channels.reverse()
     for ch in channels:
-        result.add_channel(channel_name=ch['name'], unit='ms',
+        result.add_channel(name=ch['name'], unit='ms',
                 value=ch.get('value',0), is_float=False, is_limit_mode=True,
                 limit_min_error=1, limit_max_error=5000,
                 limit_min_warning=0, limit_max_warning=3000,
                 limit_error_msg=ch.get('error', 'Timeout'))
 
-    print(result.get_json_result())
+    print(result.json_result)
     exit()
 
 if __name__ == "__main__":
     # interpret first command line parameter as json object
     data = json.loads(sys.argv[1])
     login, logout = data['params'].replace('\\','').split(',')
+
     timer = Timer()
     channels = []
 
