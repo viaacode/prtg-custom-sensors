@@ -1,0 +1,22 @@
+{
+  "prtg": {
+    "result": [
+      {
+        "Value": {
+          $.delay[#0].Channel: $["delay"][*]["Value"]
+        },
+        "Unit": "TimeHours",
+        "Float": 1,
+        "LimitMode": 1,
+        "LimitMaxError": "0.003",
+        "LimitMaxWarning": "0.0003"
+      },
+      {
+        "Channel": "Average",
+        "Value": mean($["delay"][*]["Value"]),
+        "Unit": "TimeHours",
+        "Float": 1
+      }
+    ]
+  }
+}
