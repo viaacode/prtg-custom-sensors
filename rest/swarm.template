@@ -1,0 +1,47 @@
+{
+  "prtg": {
+    "result": [    
+      {
+        "Channel": "FreeSpace %",
+        "Value": $.availPercent,
+        "Unit": "Percent",
+		"LimitMode": 1,
+        "LimitMinError": 5,
+        "LimitMinWarning": 10
+      },
+	  {
+        "Channel": "TotalSpace",
+        "Value": $.maxSpace/1000**2,
+        "CustomUnit": "TB",
+      },
+	  {
+        "Channel": "StreamCount",
+        "Value": $.streamCount,
+		"VolumeSize": "Mega",
+        "Unit": "Cpunt",
+		"Float": 1
+      },
+	  {
+        "Channel": "Online Volumes",
+        "Value": len($..volumes[?@.status=="ok"]),
+        "Unit": "Count",
+		"LimitMode": 1,
+        "LimitMinError": 133,
+        "LimitMinWarning": 134
+      },
+	  {
+        "Channel": "Retired Volumes",
+        "Value": len($..volumes[?@.status=="retired"]),
+        "Unit": "Count"
+      },
+	  {
+        "Channel": "ErrorCount",
+		"Value": sum($.subclusters[*].errCount),
+        "Unit": "Count",
+		"LimitMode": 1,
+        "LimitMaxError": 5,
+        "LimitMaxWarning": 2
+	  }
+    ]
+  }
+}
