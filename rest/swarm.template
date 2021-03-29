@@ -41,7 +41,12 @@
 		"LimitMode": 1,
         "LimitMaxError": 5,
         "LimitMaxWarning": 2
-	  }
+	  },
+	  {
+        "Channel": "TrappedSpace",
+        "Value": ($.maxSpace - $.usedSpace - $.availPercent*$.maxSpace/100)/1000**2,
+        "CustomUnit": "TB",
+      }
     ]
   }
 }

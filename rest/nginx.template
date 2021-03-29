@@ -1,0 +1,75 @@
+{
+  "prtg": {
+    "description" : {
+      "device": "Kemp Loadmaster",
+      "query": "/access/stats",
+      "comment": "Documentation is on https://support.kemptechnologies.com/hc/en-us/articles/203863435-RESTful-API"
+    },
+    "result": [
+      {
+        "channel": "CPU total system" ,
+        "unit": "Percent",
+        "value": $.Response.Success.Data.CPU.total.System
+      },
+      {
+        "channel": "CPU total user" ,
+        "unit": "Percent",
+        "value": $.Response.Success.Data.CPU.total.User
+      },
+      {
+        "channel": "CPU total idle" ,
+        "unit": "Percent",
+        "value": $.Response.Success.Data.CPU.total.Idle
+      },
+      {
+        "channel": "CPU total IO waiting" ,
+        "unit": "Percent",
+        "value": $.Response.Success.Data.CPU.total.Idle
+      },
+      {
+        "channel": "Memory used" ,
+        "unit": "Percent",
+        "value": $.Response.Success.Data.Memory.percentmemused
+      },
+      {
+        "channel": "Traffic total",
+        "mode": "Difference",
+        "value": sum($.Response.Success.Data.Network..["inbytesTotal", "outbytesTotal"]),
+        "unit": "BytesBandwidth"
+      },
+      {
+        "channel": "Traffic in",
+        "mode": "Difference",
+        "value": sum($.Response.Success.Data.Network..inbytesTotal),
+        "unit": "BytesBandwidth"
+      },
+      {
+        "channel": "Traffic out",
+        "mode": "Difference",
+        "value": sum($.Response.Success.Data.Network..outbytesTotal),
+        "unit": "BytesBandwidth"
+      },
+      {
+        "channel": "TPS SSL",
+        "value": $.Response.Success.Data.TPS.SSL,
+        "unit": "SpeedNet"
+      },
+      {
+        "channel": "TPS total",
+        "value": $.Response.Success.Data.TPS.Total,
+        "unit": "SpeedNet"
+      },
+      {
+        "channel": "VS total Bytes",
+        "value": $.Response.Success.Data.VStotals.BytesPerSec,
+        "unit": "SpeedNet"
+      },
+      {
+        "channel": "VS total Connections",
+        "value": $.Response.Success.Data.VStotals.ConnsPerSec,
+        "CustomUnit": "#/sec"
+      }
+
+    ]
+  }
+}
