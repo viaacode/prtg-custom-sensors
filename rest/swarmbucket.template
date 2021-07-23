@@ -12,7 +12,7 @@
 	  },
 	  {
 		"Channel": "ObjectCount",
-		"Value": $.hits.total,
+		"Value": $.hits.total.value,
 		"Unit": "Cpunt"
 	  },
 	  {
