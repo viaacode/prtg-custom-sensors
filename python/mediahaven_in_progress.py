@@ -5,7 +5,9 @@ Created on Fri Jul 14 09:46:57 2023
 
 Attention:
   - Add credentials before adding thisto prtg server custom sensors dir
-  
+  - requires meemoo python mediahaven module
+    - install with requirements.txt line :
+        - mediahaven @ git+https://github.com/viaacode/mediahaven-python@1ac5a9c5463d7c565b01943d5b73713818c164d6
 @author: tina
 """
 
