@@ -27,7 +27,6 @@ client_secret = CLIENT_SECRET
 username = USERNAME
 password = PASSWORD
 url = MH_URL
-
 # Create a ROPC grant
 grant = ROPCGrant(url, client_id, client_secret)
 # Request a token
@@ -49,29 +48,34 @@ def in_progress():
     return records_page.total_nr_of_results
 
 
+def count_in_progress():
+    records_page = client.records.count(
+        query="+(MediaObjectArchiveStatus:in_progress)",
+        # nrOfResults=1,
+        # startIndex=0,
+    )
+    return records_page
+
+
 def complex_in_progress():
     complex_q = (
         "MediaObjectArchiveStatus:in_progress AND originalFileName:*.complex"
     )
-    records_page = client.records.search(
-        q=f"+({complex_q})", nrOfResults=1, startIndex=0
-    )
-    return records_page.total_nr_of_results
+    records_page = client.records.count(query=f"+({complex_q})")
+    return records_page
 
 
 def gazetten_in_progress():
     complex_q = "+(RecordType:Newspaper) +(RecordStatus:processing) +(IsInIngestspace:1)"
-    records_page = client.records.search(
-        q=f"+({complex_q})", nrOfResults=1, startIndex=0
-    )
-    return records_page.total_nr_of_results
+    records_page = client.records.count(query=f"+({complex_q})")
+    return records_page
 
 
 def sensor():
     return {
         "prtg": {
             "result": [
-                {"channel": "In progress", "value": int(in_progress())},
+                {"channel": "In progress", "value": int(count_in_progress())},
                 {
                     "channel": "Complex in progress",
                     "value": int(complex_in_progress()),
@@ -87,3 +91,4 @@ def sensor():
 
 if __name__ == "__main__":
     print(json.dumps(sensor()))
+
