@@ -27,6 +27,7 @@ client_secret = CLIENT_SECRET
 username = USERNAME
 password = PASSWORD
 url = MH_URL
+
 # Create a ROPC grant
 grant = ROPCGrant(url, client_id, client_secret)
 # Request a token
@@ -71,6 +72,13 @@ def gazetten_in_progress():
     return records_page
 
 
+def material_artwork_in_progress():
+    complex_q = "+(RecordType:MaterialArtwork) +(RecordStatus:processing) +(IsInIngestspace:1)"
+    records_page = client.records.count(query=f"+({complex_q})")
+    return records_page
+
+
+#
 def sensor():
     return {
         "prtg": {
@@ -84,6 +92,10 @@ def sensor():
                     "channel": "Gazetten in progress",
                     "value": int(gazetten_in_progress()),
                 },
+                {
+                    "channel": "Material artwork in progress",
+                    "value": int(material_artwork_in_progress()),
+                },
             ]
         }
     }
@@ -91,4 +103,3 @@ def sensor():
 
 if __name__ == "__main__":
     print(json.dumps(sensor()))
-
