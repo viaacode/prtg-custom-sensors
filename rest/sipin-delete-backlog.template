@@ -1,0 +1,14 @@
+{
+  "prtg": {
+    "result": [
+      {
+      "Channel": "ObjectCount",
+      "Value": $["subscriptions"]["sipin-delete-service"]["msgBacklog"],
+      "Unit": "#",
+      "LimitMode": 1,
+      "LimitMaxError": 4000,
+      "LimitMaxWarning": 3000
+      }
+      ]
+    }
+}
