@@ -53,7 +53,6 @@ sql/mysql
 sql/mysql/Demo Serveruptime.sql
 sql/oracle
 sql/oracle/Demo Serveruptime.sql
-sql/postgresql
 sql/postgresql/Demo Serveruptime.sql
 WMI WQL scripts/Demo WQL Script - Get Win32LogicalDiscFreeMB.wql
 WMI WQL scripts/Demo WQL Script - Get Win32OsBuildnumber.wql
