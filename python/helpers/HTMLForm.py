@@ -63,11 +63,14 @@ class HTMLForm(object):
         url = self.form.action
         return urljoin(self.get_base_url(), url)
 
-    # Submit the form, including 'hidden' input field values.
+    # Submit the form, including 'hidden' input field values and the cookies
+    # The provided input date must override the original form field values,
+    # therefore both are converted to dictionaries and merged before being
+    # reconverted to an array of tuples
     def submit(self,data=[]):
         data_tuples = data if (type(data) is list) else list(data.items())
         resp = requests.post(self.get_action_url(),
-                data = data_tuples + self.form.form_values(),
+                data = list((dict(list(self.form.form_values()))|dict(data_tuples)).items()),
                 cookies = self.cookiejar,
                 headers = { 'referer': self.response.url})
         self.add_response_cookies(resp)
