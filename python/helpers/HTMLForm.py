@@ -64,13 +64,22 @@ class HTMLForm(object):
         return urljoin(self.get_base_url(), url)
 
     # Submit the form, including 'hidden' input field values and the cookies
-    # The provided input date must override the original form field values,
-    # therefore both are converted to dictionaries and merged before being
-    # reconverted to an array of tuples
+    # For example the SAML Login Response is POSTED to the SP as a form with
+    # hidden fields.
     def submit(self,data=[]):
+        # Fill in the form with the provided data
         data_tuples = data if (type(data) is list) else list(data.items())
+        for id, value in data_tuples:
+          try:
+            el = self.form.get_element_by_id(id)
+          except KeyError:
+            # Temporary fallback needed because the login form in the simplesaml1.x
+            # theme does not contain input field id's.
+            el = next(x for x in self.form.iter() if x.get('name') == id)
+          el.value = value
+        # Submit the filled in Form
         resp = requests.post(self.get_action_url(),
-                data = list((dict(list(self.form.form_values()))|dict(data_tuples)).items()),
+                data = self.form.form_values(),
                 cookies = self.cookiejar,
                 headers = { 'referer': self.response.url})
         self.add_response_cookies(resp)
