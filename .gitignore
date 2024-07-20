@@ -1,38 +1,8 @@
 # Ignore the examples provided by Paessler
 #
-EXE/Demo Batchfile - Returns 200.bat
-EXE/Demo Batchfile - Set sensorstate to error.bat
-EXE/Demo Batchfile - Set sensorstate to warning.bat
-EXE/Demo Cmd - Returns 200.cmd
-EXE/Demo Dll - Returns a random integer.dll
-EXE/Demo EXE - Returns a random integer.exe
-EXE/Demo EXE - Returns number of files in folder (parameter).exe
-EXE/Demo EXE - Returns user of process.exe
-EXE/Demo Powershell Script - Available MB via WMI.ps1
-EXE/Demo Powershell Script - InterruptsPerSec via WMI.ps1
-EXE/Demo Powershell Script - Powershell Version.ps1
-EXE/Demo Powershell Script - Returns a fixed integer value.ps1
-EXE/Demo Powershell Script - Returns a random integer value.ps1
-EXE/Demo Powershell Script - Returns Random Integer and Warnings.ps1
-EXE/Demo VBScript - InterruptsPerSec via WMI.vbs
-EXE/Demo VBScript - Multiplies two integers(2 parameters).vbs
-EXE/Demo VBScript - Returns a fixed float value.vbs
-EXE/Demo VBScript - Returns a fixed integer value.vbs
-EXE/Demo VBScript - Returns a random value.vbs
-EXE/Demo VBScript - Returns number of svchost processes.vbs
-EXE/Demo VBScript - Returns user of process.vbs
-EXE/Demo VBScript - Returns warning depending on number of svchost processes.vbs
-EXE/Demo VBScript - Timezone via WMI.vbs
-EXE/Demo VBScript - UTCTime via WMI.vbs
-EXE/HTTP Statuscode - Checks a web page for a specific status code.vbs
-EXE/Load_Test_CPU_10_Mio_Primes.exe
-EXE/Load_Test_CPU_1_Mio_Primes.exe
-EXE/Load_Test_Disk_Write_Read_10000_files.exe
-EXE/Load_Test_Disk_Write_Read_1000_files.exe
-EXE/Load_Test_Memory_Allocate_And_Free_400MB.exe
-EXEXML/Demo Batchfile - Returns static values in four channels.bat
-hl7/ADT_A08.hl7
-hl7/ORM_O01.hl7
+EXE/
+EXEXML/
+hl7/
 python/sensor_example.py
 rest/kemp.loadbalancer.template
 rest/prtg-sensor-stats.template
@@ -44,18 +14,10 @@ rest/sigfox.keepallive.template
 rest/windows.docker.container.stats.template
 rest/wunderground.template
 sql/adosql
-sql/adosql/Demo Serveruptime.sql
 sql/db2
-sql/db2/Demo - FixPackNum.sql
 sql/mssql
-sql/mssql/Demo Serveruptime.sql
 sql/mysql
-sql/mysql/Demo Serveruptime.sql
 sql/oracle
-sql/oracle/Demo Serveruptime.sql
 sql/postgresql/Demo Serveruptime.sql
-WMI WQL scripts/Demo WQL Script - Get Win32LogicalDiscFreeMB.wql
-WMI WQL scripts/Demo WQL Script - Get Win32OsBuildnumber.wql
-WMI WQL scripts/Demo WQL Script - Get Win32PercentProcessorIdleTime.wql
-WMI WQL scripts/Demo WQL Script - Get Win32PercentProcessorTime.wql
+WMI WQL scripts/
 scripts/
