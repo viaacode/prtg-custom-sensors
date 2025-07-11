@@ -2,18 +2,15 @@
 A collection of custom sensors developped for the [PRTG monitoring
 system](https://www.paessler.com/manuals/prtg/custom_sensors).
 
-## Installing python packages in the PRTG python environment
-Custom Sensors written in python might need python packages. In order to make
-these packages available for python custom sensors, download
-[get-pip](https://bootstrap.pypa.io/get-pip.py) into PRTGs python directory
-(C:\Program Files (x86)\PRTG Network Monitor\python) and install pip
-```
-cd "C:\Program Files (x86)\PRTG Network Monitor\python"
-"C:\Program Files (x86)\PRTG Network Monitor\python python.exe" get-pip.py
-```
-Once `pip` is available, python modules can be installed, for example
-```
-C:\Program Files (x86)\PRTG Network Monitor\python>"C:\Program Files (x86)\PRTG
-Network Monitor\python\Scripts\pip.exe" install requests
-```
-Make sure to qualify all python related commands with the full path to be sure that the modules are installed in PRTG's python environmnet and not the sytem's defaut python environment
+## Custom Sensors in python
+
+With PRTG release 25.x.110, Python Script Advanced sensors are no longer
+supported. The source files for these sensors live in the `python`
+directory.
+
+The are replaced by the [Script V2
+sensor](https://www.paessler.com/manuals/prtg/script_v2_sensor). They live in
+the `scripts` directory. To run Python scripts as script V2 sensor, Python 3
+must be installed for the Windows user account that the probe runs under.
+
+Required modules are installed ingy `pip install` in that environment.
