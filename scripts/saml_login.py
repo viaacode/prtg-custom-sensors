@@ -84,10 +84,10 @@ if __name__ == "__main__":
     # results in a redirect to a succesful app session (r_app.ok = True).
     # The response should not redirect back to the idp (this is common behaviour
     # when the post of the SamlLoginResponse fails and would not be detected if
-    # in check on r_app.ok)
+    # in check on r_app.ok) unless the sp is also idp.
     find_idp_redir = (r for r in r_app.history
         if urlparse(r.headers['location']).netloc == idp)
-    redirected_to_idp = next(find_idp_redir, None)
+    redirected_to_idp = apphost != idp and next(find_idp_redir, None)
     if redirected_to_idp or not r_app.ok:
         report_and_exit(step, 'error')
     channels.append({'name': step, 'value': timer.get_elapsed()})
