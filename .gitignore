@@ -1,5 +1,6 @@
 # Ignore the examples provided by Paessler
 #
+__pycache__/
 EXE/
 EXEXML/
 hl7/
@@ -20,4 +21,4 @@ sql/mysql
 sql/oracle
 sql/postgresql/Demo Serveruptime.sql
 WMI WQL scripts/
-scripts/
+scripts/examples/

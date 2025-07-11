@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+
+# This sensor is depricated and replaced by ../scripts/saml_login.py
+# Do not modify this file but implement bug fixes and enhancements in
+# ../scripts/saml_login.
+
 import requests
 from urllib.parse import urlparse, parse_qs
 from helpers.HTMLForm import HTMLForm
