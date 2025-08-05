@@ -1,29 +1,29 @@
 {
   "prtg": {
-	"result": [
-	  {
-		"Channel": "Size",
-		"Value": $.aggregations.size.value/1024**4,
-		"CustomUnit": "TiB",
-		"LimitMode": 1,
-		"LimitMaxError": 6,
-		"LimitMaxWarning": 4,
-		"float": 1
-	  },
-	  {
-		"Channel": "ObjectCount",
-		"Value": $.hits.total.value,
-		"Unit": "Cpunt"
-	  },
-	  {
-		"Channel": "MaxAge",
-		"Value": (duration("1970-01-01T00:00:00Z",now())/1000**3 - $.aggregations.minstamp.value)/3600,
-		"Unit": "TimeHours",
-		"Float": 1,
-		"LimitMode": 1,
-		"LimitMaxError": 168,
-		"LimitMaxWarning": 96
-	  },
-	]
+    "result": [
+      {
+        "Channel": "Size",
+        "Value": $.aggregations.size.value/1024**4,
+        "CustomUnit": "TiB",
+        "LimitMode": 1,
+        "LimitMaxError": 6,
+        "LimitMaxWarning": 4,
+        "float": 1
+      },
+      {
+        "Channel": "ObjectCount",
+        "Value": $.hits.total.value,
+        "Unit": "Cpunt"
+      },
+      {
+        "Channel": "MaxAge",
+        "Value": (duration("1970-01-01T00:00:00Z",now())/1000**3 - $.aggregations.minstamp.value)/3600,
+        "Unit": "TimeHours",
+        "Float": 1,
+        "LimitMode": 1,
+        "LimitMaxError": 480,
+        "LimitMaxWarning": 320
+      },
+    ]
   }
 }
