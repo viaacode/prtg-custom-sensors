@@ -22,3 +22,4 @@ sql/oracle
 sql/postgresql/Demo Serveruptime.sql
 WMI WQL scripts/
 scripts/examples/
+Pipfile.lock

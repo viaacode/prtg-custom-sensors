@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 pyquery = "*"
+mediahaven = {editable = true, ref = "6abd66de7a919cf76c944122b14f53ea29e6e16a", git = "git+https://github.com/viaacode/mediahaven-python"}
 
 [dev-packages]
 
