@@ -24,7 +24,7 @@ def sensor():
         "message": "last_lto_migration",
         "channels": [
             {
-                "id": 0,
+                "id": 10,
                 "type": "integer",
                 "name": "LTO migration",
                 "value": int(math.floor(last_migration_event_delta())),
