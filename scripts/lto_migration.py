@@ -18,16 +18,21 @@ def last_migration_event_delta():
 
 
 def sensor():
-    return {
-        "prtg": {
-            "result": [
-                {
-                    "channel": "LTO migration",
-                    "value": int(math.floor(last_migration_event_delta())),
-                },
-            ]
-        }
+    result = {
+        "version": 2,
+        "status": "ok",
+        "message": "last_lto_migration",
+        "channels": [
+            {
+                "id": 0,
+                "type": "integer",
+                "name": "LTO migration",
+                "value": int(math.floor(last_migration_event_delta())),
+            },
+        ]
     }
+
+    return result
 
 
 if __name__ == "__main__":
