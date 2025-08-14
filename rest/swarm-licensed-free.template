@@ -5,6 +5,7 @@
         "Channel": "licensed space available",
         "Value": $.licensedAvailSpace / $.licensedSpace * 100,
         "Unit": "Percent",
+        "Float": 1,
       }
     ]
   }
