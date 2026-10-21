@@ -1,0 +1,14 @@
+{
+  "prtg": {
+    "result": [
+      {
+        "Channel": "ObjectCount",
+        "Value": $["subscriptions"]["sipin-sip-state-updater"]["msgBacklog"],
+        "Unit": "#",
+        "LimitMode": 1,
+        "LimitMaxError": 2000,
+        "LimitMaxWarning": 1000
+      }
+    ]
+  }
+}

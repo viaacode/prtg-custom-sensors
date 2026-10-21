@@ -1,0 +1,14 @@
+{
+  "prtg": {
+    "result": [
+      {
+        "Channel": "ObjectCount",
+        "Value": $["subscriptions"]["pulsar2db_subscription"]["msgBacklog"],
+        "Unit": "#",
+        "LimitMode": 1,
+        "LimitMaxError": 2000,
+        "LimitMaxWarning": 1000
+      }
+    ]
+  }
+}
